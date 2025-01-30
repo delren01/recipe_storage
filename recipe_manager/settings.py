@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ou39(^26wah%o3!p6sq-0jk-k_d2u=l*gu)v2-%5xjz^+gdbw%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['recipe-storage.onrender.com']
 
 
 # Application definition

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ou39(^26wah%o3!p6sq-0jk-k_d2u=l*gu)v2-%5xjz^+gdbw%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['recipe-storage.onrender.com']
+ALLOWED_HOSTS = ['*','recipe-storage.onrender.com', '127.0.0.1', 'localhost', 'db.lsbwvqqbdcsdhfwhbpau.supabase.co']
 
 
 # Application definition
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': '/data/db.sqlite3',
     }
 }
 

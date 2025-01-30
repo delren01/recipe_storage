@@ -1,0 +1,17 @@
+{% extends 'recipes/base.html' %}
+
+{% block content %}
+    <h2>Add Instructions to {{ recipe }}</h2>
+    <p>Type the instructions on the text box:</p>
+    <!--action argument tells browser where to send the data submitted in the form.-->
+    <!--method argument tells browser to submit the data as a POST request-->
+    <form action="{% url 'recipes:add_instructions' recipe.id %}" method="post">
+        <!--Django's template tag{% csrf_token %} prevent attackers from using form to gain unauthorized access-->
+        {% csrf_token %}
+        <!--We display the form. Only need to include the template variable 'form'-->
+        <!--The 'as_div' modifier tells Django to render all the form elements as HTML <div></div> elements-->
+        {{ form.as_p }}
+        <!--Django doesn't create a submit button for forms so we define one before closing the form.-->
+        <button name="submit">Add Instructions</button>
+    </form>
+{% endblock content %}

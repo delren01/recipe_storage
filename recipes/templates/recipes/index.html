@@ -1,0 +1,19 @@
+{% extends 'recipes/base.html' %}
+
+{% block page_header %}
+    <div class="pb-3 mb-4 bg-light border rounded-3">
+        <div class="container-fluid py-2">
+            <h4 class="display-5"><strong>The Recipe Hub</strong></h4>  <!-- Smaller title -->
+            <p class="fs-6">Manage your own cookbook! Store, organize, and access your favorite recipes 
+                all in one place. By registering an account,
+                you can add ingredients, instructions, and more! There will
+                be future updates. Stay tuned :D
+            </p>
+            {% if user.is_authenticated %}
+                <p class="fs-8">Welcome back, {{ user.username.title }}! Have more recipes?</p>
+            {% else %}
+                <a class="btn btn-primary btn-md mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock page_header %}

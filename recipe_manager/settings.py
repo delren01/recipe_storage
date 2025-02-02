@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ou39(^26wah%o3!p6sq-0jk-k_d2u=l*gu)v2-%5xjz^+gdbw%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','recipe-storage.onrender.com', '127.0.0.1', 'localhost', 'db.lsbwvqqbdcsdhfwhbpau.supabase.co']
+ALLOWED_HOSTS = ['recipe-storage.onrender.com', '127.0.0.1', 'localhost', 'db.lsbwvqqbdcsdhfwhbpau.supabase.co']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse("postgresql://postgres:Delren1201!@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres")
+DATABASES['default'] = dj_database_url.config(default="postgresql://postgres:Delren1201!@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres")
 #postgresql://postgres:[YOUR-PASSWORD]@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres
 
 

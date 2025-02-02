@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://username:password@host:port/database_name"
+        default="postgresql://postgres:Delren1201!@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres"
     )
 }
 

@@ -136,3 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'recipes:index'
 LOGOUT_REDIRECT_URL = 'recipes:index'
 LOGIN_URL = 'accounts:login'
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in the database

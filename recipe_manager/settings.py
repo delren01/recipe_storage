@@ -137,3 +137,7 @@ LOGIN_REDIRECT_URL = 'recipes:index'
 LOGOUT_REDIRECT_URL = 'recipes:index'
 LOGIN_URL = 'accounts:login'
 SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in the database
+# Ensure cookies persist across sessions
+SESSION_COOKIE_AGE = 1209600  # 2 weeks (in seconds)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Ensures session is kept after browser close
+SESSION_COOKIE_SECURE = True  # Set to True if using HTTPS

@@ -80,6 +80,18 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '82vHcsjXGc47EMCW',
+        'HOST': 'db.lsbwvqqbdcsdhfwhbpau.supabase.co',
+        'PORT': '5432',
+    }
+}
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -87,11 +99,11 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://postgres:82vHcsjXGc47EMCW@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres"
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default="postgresql://postgres:82vHcsjXGc47EMCW@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres"
+#     )
+# }
 
 
 #postgresql://postgres:[YOUR-PASSWORD]@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres

@@ -80,24 +80,26 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '82vHcsjXGc47EMCW',
-#         'HOST': 'db.lsbwvqqbdcsdhfwhbpau.supabase.co',
-#         'PORT': '5432',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '82vHcsjXGc47EMCW',
+        'HOST': 'db.lsbwvqqbdcsdhfwhbpau.supabase.co',
+        'PORT': '5432',
     }
 }
+
+SUPABASE_URL = 'https://lsbwvqqbdcsdhfwhbpau.supabase.co'  # Replace with your actual Supabase URL
+SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxzYnd2cXFiZGNzZGhmd2hicGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNzY1NDUsImV4cCI6MjA1Mzg1MjU0NX0.j8skOztM7ZuOGBr0_cUDfPkh1AcSs7_6cqvZ08tO4PQ'  # Replace with your actual Supabase anon key
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default': dj_database_url.config(

@@ -1,3 +1,9 @@
 recipe_env/
 __pycache__/
 *.sqlite3
+node_modules
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*

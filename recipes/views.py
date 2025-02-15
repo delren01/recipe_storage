@@ -138,7 +138,7 @@ def edit_instructions(request, instruction_id):
 @login_required
 def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-
+    check_recipe_owner(request, recipe)
     if request.method == "POST":
         recipe.delete()
         return redirect('recipes:recipe_page')
@@ -152,7 +152,7 @@ def delete_instruction(request, instruction_id):
 
     if request.method == "POST":
         instruction.delete()
-        return redirect('recipe:recipe_detail', recipe_id=recipe_id)
+        return redirect('recipes:recipe_detail', recipe_id=recipe_id)
     context = {'instruction': instruction}
     return render(request, 'recipes/delete_instruction.html', context)
 
@@ -163,7 +163,7 @@ def delete_ingredient(request, ingredient_id):
 
     if request.method == "POST":
         ingredient.delete()
-        return redirect('recipe:recipe_detail', recipe_id=recipe_id)
+        return redirect('recipes:recipe_detail', recipe_id=recipe_id)
     context = {'ingredient': ingredient}
     return render(request, 'recipes/delete_ingredient.html', context)
 

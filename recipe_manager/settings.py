@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
-# import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ou39(^26wah%o3!p6sq-0jk-k_d2u=l*gu)v2-%5xjz^+gdbw%'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-default-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['https://recipe-storage.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['recipe-storage.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'accounts',
     # Third Party Apps:
     'django_bootstrap5',
+    'whitenoise.runserver_nostatic',  # WhiteNoise for static files on Render
     # Django's Default Apps:
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -64,7 +67,7 @@ TEMPLATES = [
         'DIRS': [
             BASE_DIR / 'templates',
             BASE_DIR / 'recipes' / 'templates',
-            ],
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,36 +86,15 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:8UEDY9TJevfI4dHD@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '82vHcsjXGc47EMCW',
-        'HOST': 'db.lsbwvqqbdcsdhfwhbpau.supabase.co',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
 }
 
-SUPABASE_URL = 'https://lsbwvqqbdcsdhfwhbpau.supabase.co'  # Replace with your actual Supabase URL
-SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxzYnd2cXFiZGNzZGhmd2hicGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNzY1NDUsImV4cCI6MjA1Mzg1MjU0NX0.j8skOztM7ZuOGBr0_cUDfPkh1AcSs7_6cqvZ08tO4PQ'  # Replace with your actual Supabase anon key
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default="postgresql://postgres:82vHcsjXGc47EMCW@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres"
-#     )
-# }
-
-
-#postgresql://postgres:[YOUR-PASSWORD]@db.lsbwvqqbdcsdhfwhbpau.supabase.co:5432/postgres
-
+# Supabase Settings
+SUPABASE_URL = os.getenv('SUPABASE_URL', 'https://lsbwvqqbdcsdhfwhbpau.supabase.co')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxzYnd2cXFiZGNzZGhmd2hicGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyNzY1NDUsImV4cCI6MjA1Mzg1MjU0NX0.j8skOztM7ZuOGBr0_cUDfPkh1AcSs7_6cqvZ08tO4PQ')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -145,23 +127,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+# Static files (CSS, JavaScript, Image
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# My Settings:
-LOGIN_REDIRECT_URL = 'recipes:index'
-LOGOUT_REDIRECT_URL = 'recipes:index'
-LOGIN_URL = 'accounts:login'
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Store sessions in the database
-# Ensure cookies persist across sessions
-SESSION_COOKIE_AGE = 1209600  # 2 weeks (in seconds)
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Ensures session is kept after browser close
-SESSION_COOKIE_SECURE = True  # Set to True if using HTTPS
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Enable static file compression

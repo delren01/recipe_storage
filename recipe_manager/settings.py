@@ -29,6 +29,10 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['recipe-storage.onrender.com', '127.0.0.1', 'localhost']
 
+# Add Render external hostname
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -86,22 +90,18 @@ WSGI_APPLICATION = 'recipe_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://postgres:jgKyuhF3LqNZl27q@db.zwsmjutliwnnmsgeipto.supabase.co:5432/postgres')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',  
-        'USER': 'postgres',
-        'PASSWORD': 'jgKyuhF3LqNZl27q',  # Replace with your actual password
-        'HOST': 'db.zwsmjutliwnnmsgeipto.supabase.co',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+    )
 }
-
 
 # Supabase Settings
 SUPABASE_URL = os.getenv('SUPABASE_URL', 'https://zwsmjutliwnnmsgeipto.supabase.co')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3c21qdXRsaXdubm1zZ2VpcHRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk2NzU5NDksImV4cCI6MjA1NTI1MTk0OX0.3cbTydTPRH-dBgYr3a5steMZZgtEjqMN7R1MuUAWR-0')
+SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

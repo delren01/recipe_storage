@@ -93,7 +93,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
-            'USER': 'postgres',  # Replace with your Supabase user
+            'USER': 'postgres.zwsmjutliwnnmsgeipto',  # Replace with your Supabase user
             'PASSWORD': 'jgKyuhF3LqNZl27q',  # Replace with your Supabase password
             'HOST': 'aws-0-us-west-1.pooler.supabase.com',  # Use the Session Pooler address
             'PORT': '5432',

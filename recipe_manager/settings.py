@@ -104,7 +104,7 @@ else:
     }
 
 # Supabase Settings
-SUPABASE_URL = os.getenv('SUPABASE_URL', 'https://zwsmjutliwnnmsgeipto.supabase.co')
+SUPABASE_URL = os.getenv('SUPABASE_URL', 'postgresql://postgres.zwsmjutliwnnmsgeipto:jgKyuhF3LqNZl27q@aws-0-us-west-1.pooler.supabase.com:5432/postgres')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Password validation

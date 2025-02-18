@@ -103,9 +103,6 @@ else:
         }
     }
 
-# Supabase Settings
-SUPABASE_URL = os.getenv('SUPABASE_URL', 'postgresql://postgres.zwsmjutliwnnmsgeipto:Hv6D4Fr8tpv1RwGD@aws-0-us-west-1.pooler.supabase.com:5432/postgres')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

@@ -139,3 +139,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Enable static file compression
+
+LOGIN_REDIRECT_URL = '/index'  # Home page URL
+LOGOUT_REDIRECT_URL = '/index'
+

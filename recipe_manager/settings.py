@@ -94,7 +94,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres.zwsmjutliwnnmsgeipto',  # Replace with your Supabase user
-            'PASSWORD': 'jgKyuhF3LqNZl27q',  # Replace with your Supabase password
+            'PASSWORD': 'Hv6D4Fr8tpv1RwGD',  # Replace with your Supabase password
             'HOST': 'aws-0-us-west-1.pooler.supabase.com',  # Use the Session Pooler address
             'PORT': '5432',
             'OPTIONS': {
@@ -104,7 +104,7 @@ else:
     }
 
 # Supabase Settings
-SUPABASE_URL = os.getenv('SUPABASE_URL', 'postgresql://postgres.zwsmjutliwnnmsgeipto:jgKyuhF3LqNZl27q@aws-0-us-west-1.pooler.supabase.com:5432/postgres')
+SUPABASE_URL = os.getenv('SUPABASE_URL', 'postgresql://postgres.zwsmjutliwnnmsgeipto:Hv6D4Fr8tpv1RwGD@aws-0-us-west-1.pooler.supabase.com:5432/postgres')
 SUPABASE_KEY = os.getenv('SUPABASE_KEY')
 
 # Password validation

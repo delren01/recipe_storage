@@ -13,6 +13,13 @@ class RecipeForm(forms.ModelForm):
             'category': 'Category'
         }
 
+        widgets = {
+            'name': forms.TextInput(attrs={"class": "form-control"}),
+            'cooking_time_hours': forms.NumberInput(attrs={"class": "form-control", "min": 0}),
+            'cooking_time_minutes': forms.NumberInput(attrs={"class": "form-control", "min": 0}),
+            'category': forms.Select(attrs={"class": "form-select"})
+        }
+
 class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
@@ -22,9 +29,17 @@ class IngredientForm(forms.ModelForm):
             'quantity': 'Quantity',
             'unit': 'Unit of Measurement (ex. pinch, dash, cups, tbsp, tsp, pcs)'
         }
+        widgets = {
+            'name': forms.TextInput(attrs={"class": "form-control"}),
+            'quantity': forms.NumberInput(attrs={"class": "form-control", "min": 0}),
+            'unit': forms.TextInput(attrs={"class": "form-control"})
+        }
 
 class InstructionForm(forms.ModelForm):
     class Meta:
         model = Instruction
         fields = ['instruction_text']
         labels = {'instruction_text': "Instructions"}
+        widgets = {
+            'instruction_text': forms.Textarea(attrs={"class": "form-control"})
+        }

@@ -23,7 +23,13 @@ def recipe_detail(request, recipe_id):
     
     instructions = recipe.instruction_steps.all().order_by('id')
     ingredients = recipe.ingredients.all().order_by('name')
-    context = {'recipe': recipe, 'instructions': instructions, 'ingredients': ingredients}
+    context = {
+        'recipe': recipe,
+        'instructions': instructions, 
+        'ingredients': ingredients,
+        'created_at': recipe.created_at,
+        'updated_at': recipe.updated_at,
+        }
     return render(request, 'recipes/recipe_detail.html', context)
 
 # When user initially requests this page, their browser will send a GET request.

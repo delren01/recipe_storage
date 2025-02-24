@@ -2,6 +2,8 @@
 
 {% block content %}
     <h2 style="text-align: center; font-size: 32px; font-family: Geneva, sans-serif; color: palevioletred;">{{ recipe.name }}</h2>
+    <p><strong>Created at:</strong> {{ recipe.created_at }}</p>
+    <p><strong>Updated at: </strong> {{ recipe.updated_at }}</p>
     <p style="font-weight: bold; font-size: 19px; text-align: center;">Cooking Time: {{ recipe.cooking_time_hours }} hours and {{ recipe.cooking_time_minutes }} minutes</p>
 
     <h3>Instructions:</h3>

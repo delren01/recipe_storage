@@ -91,7 +91,7 @@ def add_instructions(request, recipe_id):
 @login_required
 def edit_ingredient(request, ingredient_id):
     """Edit an existing ingredient."""
-    ingredient = Ingredient.objects.get(id=ingredient_id)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
     recipe = ingredient.recipe
     check_recipe_owner(request, recipe)
     
@@ -114,7 +114,7 @@ def edit_ingredient(request, ingredient_id):
 @login_required
 def edit_instructions(request, instruction_id):
     """Edit an existing instructions"""
-    instruction = Instruction.objects.get(id=instruction_id)
+    instruction = get_object_or_404(Instruction, id=instruction_id)
     recipe = instruction.recipe
     check_recipe_owner(request, recipe)
     if request.method != "POST":

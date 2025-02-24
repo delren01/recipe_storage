@@ -37,8 +37,8 @@ class Recipe(models.Model):
     """
     name = models.CharField(max_length=300)
     instructions = models.TextField()
-    cooking_time_hours = models.IntegerField(default=0, help_text="Cooking time in hours.")
-    cooking_time_minutes = models.IntegerField(default=0, help_text="Cooking time in minutes.")
+    cooking_time_hours = models.IntegerField(default=0)
+    cooking_time_minutes = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -65,9 +65,9 @@ class Ingredient(models.Model):
     Each ingredient includes its name, the quantity used, and the unit of measurement.
     Ingredients can belong to multiple recipes, linking them through the `recipe` field.
     """
-    name = models.CharField(max_length=300, help_text="The name of the ingredient (e.g., 'Sugar').")
-    quantity = models.FloatField(help_text="The quantity of the ingredient.")
-    unit = models.CharField(max_length=10, help_text="The unit of measurement for the quantity.")
+    name = models.CharField(max_length=300)
+    quantity = models.FloatField()
+    unit = models.CharField(max_length=10)
     recipe = models.ForeignKey(
         'Recipe', 
         on_delete=models.CASCADE, 
